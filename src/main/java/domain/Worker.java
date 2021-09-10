@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,9 +13,11 @@ public class Worker extends User {
 	private String job;
 
 	public Worker() {
+		super();
 	}
-	
-	public Worker(String job) {
+
+	public Worker(String name, String email, String pwd, List<Appointment> appointments, String job) {
+		super(name, email, pwd, appointments);
 		this.job = job;
 	}
 
@@ -39,5 +43,5 @@ public class Worker extends User {
 	public String toString() {
 		return "Worker [id=" + id + ", job=" + job + "]";
 	}
-	
+
 }

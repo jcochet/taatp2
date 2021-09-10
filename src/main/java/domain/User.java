@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,16 +15,17 @@ public class User {
 	private String name;
 	private String email;
 	private String pwd;
-	private Appointment appointment;
+	private List<Appointment> appointments;
 
 	public User() {
+		this.appointments = new ArrayList<Appointment>();
 	}
 
-	public User(String name, String email, String pwd, Appointment appointment) {
+	public User(String name, String email, String pwd, List<Appointment> appointments) {
 		this.name = name;
 		this.email = email;
 		this.pwd = pwd;
-		this.appointment = appointment;
+		this.appointments = appointments;
 	}
 
 	@Id
@@ -59,18 +63,18 @@ public class User {
 	}
 
 	@OneToMany(mappedBy = "date")
-	public Appointment getAppointment() {
-		return appointment;
+	public List<Appointment> getAppointments() {
+		return appointments;
 	}
 
-	public void setAppointment(Appointment appointment) {
-		this.appointment = appointment;
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", pwd=" + pwd + ", appointment="
-				+ appointment.getId() + "]";
+				+ appointments + "]";
 	}
 
 }
