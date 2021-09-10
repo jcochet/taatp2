@@ -1,12 +1,18 @@
 package domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 public class User {
     private String name;
     private String email;
     private String pwd;
-    private Appointnent appointment;
+    private Appointment appointment;
     public User(){}
 
+    @Id
+    @GeneratedValue
     public String getName() {
         return name;
     }
@@ -19,7 +25,7 @@ public class User {
         return pwd;
     }
 
-    public Appointnent getAppointment() {
+    public Appointment getAppointment() {
         return appointment;
     }
 
@@ -34,8 +40,18 @@ public class User {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
-
-    public void setAppointment(Appointnent appointment) {
+    @OneToMany
+    public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", appointment=" + appointment +
+                '}';
     }
 }

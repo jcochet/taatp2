@@ -1,5 +1,8 @@
 package domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Worker extends User {
 
     private String job;
@@ -7,6 +10,8 @@ public class Worker extends User {
 
     public Worker(){}
 
+    @Id
+    @GeneratedValue
     public String getJob() {
         return job;
     }
@@ -21,5 +26,12 @@ public class Worker extends User {
 
     public void setId(int id) {
         this.id = id;
+    }
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "job='" + job + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
