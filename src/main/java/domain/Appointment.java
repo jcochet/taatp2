@@ -79,8 +79,8 @@ public class Appointment {
 
 	@Override
 	public String toString() {
-		return "Appointment [id=" + id + ", date=" + date + ", duration=" + duration + ", user=" + user + ", worker="
-				+ worker + ", description=" + description + "]";
+		return "Appointment [id=" + id + ", date=" + date + ", duration=" + duration + ", user=" + user.getId()
+				+ ", worker=" + worker.getId() + ", description=" + description + "]";
 	}
 
 }
