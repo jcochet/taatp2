@@ -16,6 +16,17 @@ public class Appointment {
 	private Worker worker;
 	private String description;
 
+	public Appointment() {
+	}
+
+	public Appointment(Date date, int duration, User user, Worker worker, String description) {
+		this.date = date;
+		this.duration = duration;
+		this.user = user;
+		this.worker = worker;
+		this.description = description;
+	}
+
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -71,4 +82,5 @@ public class Appointment {
 		return "Appointment [id=" + id + ", date=" + date + ", duration=" + duration + ", user=" + user + ", worker="
 				+ worker + ", description=" + description + "]";
 	}
+
 }
