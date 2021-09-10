@@ -41,7 +41,7 @@ public class Worker extends User {
 
 	@Override
 	public String toString() {
-		return "Worker [id=" + id + ", job=" + job + "]";
+		return "Worker [id=" + id + ", name=" +super.getName() + ", email=" + super.getEmail() + ", pwd=" + super.getPwd() + ", appointment="
+				+ super.getAppointments() +"job=" + job +"]";
 	}
-
 }
