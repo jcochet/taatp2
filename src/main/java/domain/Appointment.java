@@ -63,6 +63,7 @@ public class Appointment {
 		this.user = user;
 	}
 
+	@ManyToOne
 	public Worker getWorker() {
 		return worker;
 	}
