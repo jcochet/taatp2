@@ -37,7 +37,7 @@ public class JpaTest {
 	}
 
 	private static void createAppointments(EntityManager manager) {
-		int numOfAppointments = manager.createQuery("Select a From Appointment", Appointment.class).getResultList().size();
+		int numOfAppointments = manager.createQuery("Select a From Appointment a", Appointment.class).getResultList().size();
 		if(numOfAppointments == 0) {
 			User jcochet = new User("Julien Cochet", "julien.cochet@etudiant.univ-rennes1.fr", "password", new ArrayList<>());
 			manager.persist(jcochet);
@@ -45,7 +45,7 @@ public class JpaTest {
 			manager.persist(sababou);
 			Appointment app1 = new Appointment(new Date(0), 45, jcochet, sababou, "Entretien de 45 minutes");
 			manager.persist(app1);
-			Appointment app2 = new Appointment(new Date(2000000), 45, jcochet, sababou, "Second entretien de 45 minutes");
+			Appointment app2 = new Appointment(new Date(100000000), 45, jcochet, sababou, "Second entretien de 45 minutes");
 			manager.persist(app2);
 		}
 	}
