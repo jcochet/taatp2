@@ -1,5 +1,7 @@
 package domain;
 
+import org.graalvm.compiler.lir.LIRInstruction;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +15,12 @@ public class User {
     private Appointment appointment;
     private long id;
     public User(){}
+    public User(String name ,String email, String pwd , Appointment appointment){
+        this.appointment=appointment;
+        this.email=email;
+        this.name=name;
+        this.pwd=pwd;
+    }
 
     @Id
     @GeneratedValue
@@ -51,7 +59,7 @@ public class User {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
-    @OneToMany
+    @OneToMany(mappedBy = "date")
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
     }
