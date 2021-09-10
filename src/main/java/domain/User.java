@@ -8,11 +8,21 @@ public class User {
     private String name;
     private String email;
     private String pwd;
-    private Appointment appointment;
-    public User(){}
 
     @Id
     @GeneratedValue
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private Appointment appointment;
+    private long id;
+    public User(){}
+
     public String getName() {
         return name;
     }

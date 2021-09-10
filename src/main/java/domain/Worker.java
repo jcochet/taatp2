@@ -6,12 +6,11 @@ import javax.persistence.Id;
 public class Worker extends User {
 
     private String job;
-    private int id;
+    private long id;
 
     public Worker(){}
 
-    @Id
-    @GeneratedValue
+
     public String getJob() {
         return job;
     }
@@ -19,8 +18,9 @@ public class Worker extends User {
     public void setJob(String job) {
         this.job = job;
     }
-
-    public int getId() {
+    @Id
+    @GeneratedValue
+    public long getId() {
         return id;
     }
 
