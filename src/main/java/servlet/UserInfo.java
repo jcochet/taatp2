@@ -3,9 +3,11 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,19 +20,28 @@ import jpa.EntityManagerHelper;
 @WebServlet(name = "userinfo", urlPatterns = { "/UserInfo" })
 public class UserInfo extends HttpServlet {
 	private static final long serialVersionUID = -873272075166276907L;
+	private static EntityManager manager;
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		manager = EntityManagerHelper.getEntityManager();
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<HTML>\n<BODY>\n" + "<H1>Recapitulatif des informations</H1>\n" + "<UL>\n" + " <LI>Nom: "
-				+ request.getParameter("name") + "\n" + " <LI>Prenom: " + request.getParameter("firstname") + "\n"
-				+ " <LI>Age: " + request.getParameter("age") + "\n" + "</UL>\n" + "</BODY></HTML>");
-
 		String name = request.getParameter("name");
 		String firstname = request.getParameter("firstname");
 		String age = request.getParameter("age");
 		System.out.println("send {" + name + ";" + firstname + ";" + age + "} to batabase");
-		sendToBD(name, firstname, age);
+		List<User> users = sendToBD(name, firstname, age);
+		String data = "num of users:" + users.size() + "\n";
+		for (User next : users) {
+			data += next.toString() + "\n";
+		}
+		PrintWriter out = response.getWriter();
+		out.println("<HTML>\n<BODY>\n" + "<H1>Contenu de la base de donnée</H1>\n" + data + "\n</BODY></HTML>");
 	}
 
 	/**
@@ -40,8 +51,7 @@ public class UserInfo extends HttpServlet {
 	 * @param firstname Prénom de l'utilisateur
 	 * @param age       Age de l'utilisateur
 	 */
-	private void sendToBD(String name, String firstname, String age) {
-		EntityManager manager = EntityManagerHelper.getEntityManager();
+	private List<User> sendToBD(String name, String firstname, String age) {
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -53,7 +63,7 @@ public class UserInfo extends HttpServlet {
 		}
 
 		tx.commit();
-		manager.close();
-		EntityManagerHelper.closeEntityManagerFactory();
+		List<User> userList = manager.createNamedQuery("getUsers", User.class).getResultList();
+		return userList;
 	}
 }
