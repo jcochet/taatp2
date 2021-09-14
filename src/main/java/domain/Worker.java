@@ -1,11 +1,12 @@
 package domain;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import java.util.List;
 
+@NamedQuery(name = "getWorkers", query = "Select a From Appointment a")
 @Entity
 public class Worker extends User {
 

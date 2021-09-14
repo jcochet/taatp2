@@ -1,13 +1,10 @@
 package domain;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
+@NamedQuery(name = "getUsers", query = "Select a From Appointment a")
 @Entity
 public class User {
 
