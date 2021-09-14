@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQuery(name = "getUsers", query = "Select a From Appointment a")
+@NamedQuery(name = "getUsers", query = "Select a From User a")
 @Entity
 public class User {
 

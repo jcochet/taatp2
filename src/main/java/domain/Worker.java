@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import java.util.List;
 
-@NamedQuery(name = "getWorkers", query = "Select a From Appointment a")
+@NamedQuery(name = "getWorkers", query = "Select a From Worker a")
 @Entity
 public class Worker extends User {
 
